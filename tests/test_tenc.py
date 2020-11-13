@@ -1,5 +1,5 @@
 import unittest
-from encryption.methods import encrypt, decrypt
+from tenc import encrypt, decrypt
 
 
 class TestStringMethods(unittest.TestCase):

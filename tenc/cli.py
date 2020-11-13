@@ -4,9 +4,10 @@ import sys
 import os
 import argparse
 
-from encryption.methods import encrypt, decrypt
+from .core import encrypt, decrypt
 
-if __name__ == '__main__':
+
+def main(args=None):
     parser = argparse.ArgumentParser(description='Encrypt and decrypt files')
 
     parser.add_argument('-f', dest='path', help='path to file', required=True)
@@ -37,3 +38,7 @@ if __name__ == '__main__':
                 f.close()
 
             encryptedFile.close()
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -25,3 +25,12 @@ python3 encryption.py -p pa$$w0rd -f ./test.json.enc -d
 python3 -m unittest discover
 coverage run -m unittest discover && coverage report && coverage html
 ```
+
+
+https://www.codementor.io/@ajayagrawal295/how-to-publish-your-own-python-package-12tbhi20tf
+
+```
+python3 setup.py sdist bdist_wheel
+python3 setup.py develop
+python setup.py develop --uninstall
+```
