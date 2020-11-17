@@ -27,10 +27,14 @@ coverage run -m unittest discover && coverage report && coverage html
 ```
 
 
-https://www.codementor.io/@ajayagrawal295/how-to-publish-your-own-python-package-12tbhi20tf
-
-```
+```bash
 python3 setup.py sdist bdist_wheel
+python -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
 python3 setup.py develop
 python setup.py develop --uninstall
+
+# docs
+sphinx-apidoc -o source/ ../tenc
+
+python -m compileall .
 ```

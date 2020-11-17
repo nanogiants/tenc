@@ -1,1 +1,1 @@
-from .core import encrypt, decrypt
+from .core import Tenc
