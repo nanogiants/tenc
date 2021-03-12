@@ -28,6 +28,10 @@ def main(args=None):
 
     args = parser.parse_args()
 
+    if len(args.password) not in [16, 24, 32]:
+        print("Please provide a password with the length of 16, 24, or 32 byte")
+        return
+
     if not args.d:
         filename = args.path + '.enc'
 

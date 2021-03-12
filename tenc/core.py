@@ -6,10 +6,14 @@ from Crypto.Util.Padding import pad, unpad
 def encrypt(data, password):
     """Enrcrypt data and return content in binary"""
 
-    cipher = AES.new(password.encode(), AES.MODE_CBC)
-    cypher_text_bytes = cipher.encrypt(pad(data.encode(), AES.block_size))
+    try:
+        cipher = AES.new(password.encode(), AES.MODE_CBC)
+        cypher_text_bytes = cipher.encrypt(pad(data.encode(), AES.block_size))
 
-    return b'' + cipher.iv + b':' + cypher_text_bytes
+        return b'' + cipher.iv + b':' + cypher_text_bytes
+    except ValueError:
+        print("There was an error")
+        raise ValueError
 
 
 def decrypt(data, password):
