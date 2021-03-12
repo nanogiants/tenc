@@ -1,1 +1,1 @@
-from .core import Tenc
+from .core import *

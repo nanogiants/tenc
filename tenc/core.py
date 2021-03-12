@@ -1,36 +1,26 @@
+import sys
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 
 
-class Tenc:
-    """Tenc class"""
+def encrypt(data, password):
+    """Enrcrypt data and return content in binary"""
 
-    # encrypt a text with a password
-    @staticmethod
-    def encrypt(raw, password):
-        """Return iv and content in hex
+    cipher = AES.new(password.encode(), AES.MODE_CBC)
+    cypher_text_bytes = cipher.encrypt(pad(data.encode(), AES.block_size))
 
-        :meta public:"""
+    return b'' + cipher.iv + b':' + cypher_text_bytes
 
-        cipher = AES.new(password.encode(), AES.MODE_CBC)
-        cypher_text_bytes = cipher.encrypt(pad(raw.encode(), AES.block_size))
 
-        return cipher.iv.hex() + ':' + cypher_text_bytes.hex()
+def decrypt(data, password):
+    """Decrypt data and return decrypted string in utf-8"""
 
-    # decrypt a text with a password
-    @staticmethod
-    def decrypt(data, password):
-        """Return decrypted string in utf-8
+    try:
+        iv = bytes(bytearray.fromhex(data[0:16].hex()))
+        cipher_text = bytes(bytearray.fromhex(data[17:].hex()))
 
-        :meta public:"""
-        try:
-            content = data.split(':')
-
-            iv = bytes(bytearray.fromhex(content[0]))
-            cipher_text = bytes(bytearray.fromhex(content[1]))
-
-            cipher = AES.new(password.encode(), AES.MODE_CBC, iv)
-            return unpad(cipher.decrypt(cipher_text), AES.block_size).decode('utf-8')
-        except ValueError:
-            print("There was an error")
-            raise ValueError
+        cipher = AES.new(password.encode(), AES.MODE_CBC, iv)
+        return unpad(cipher.decrypt(cipher_text), AES.block_size).decode('utf-8')
+    except ValueError:
+        print("There was an error")
+        raise ValueError

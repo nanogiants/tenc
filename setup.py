@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 
 setup(name='tenc',
-      version='1.0',
+      version='1.2',
       description='A small package to de- and encrypt strings',
       author='Philip Stapelfeldt',
       author_email='p.stapelfeldt@nanogiants.de',
@@ -17,5 +17,5 @@ setup(name='tenc',
       install_requires=[
           'PyCryptodome',
       ],
-      python_requires='>=3.6'
+      python_requires='>=2.7'
       )

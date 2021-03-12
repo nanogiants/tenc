@@ -12,6 +12,7 @@ Welcome to Tenc's documentation!
    :caption: Contents:
 
    tenc
+   modules
 
 Indices and tables
 ==================

@@ -1,5 +1,12 @@
 [run]
+source =
+    tenc
+    tests
 omit =
-        *__init__*
-        */usr/local/lib*
-        *tests*
+    *__init__*
+    */usr/local/lib*
+    *tests*
+
+[paths]
+source =
+    tenc
